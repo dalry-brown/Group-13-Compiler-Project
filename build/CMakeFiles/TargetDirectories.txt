@@ -1,0 +1,6 @@
+/mnt/c/Users/HP/compiler/simpleLangCompiler/build/CMakeFiles/intrinsics_gen.dir
+/mnt/c/Users/HP/compiler/simpleLangCompiler/build/CMakeFiles/omp_gen.dir
+/mnt/c/Users/HP/compiler/simpleLangCompiler/build/CMakeFiles/acc_gen.dir
+/mnt/c/Users/HP/compiler/simpleLangCompiler/build/CMakeFiles/simplelang.dir
+/mnt/c/Users/HP/compiler/simpleLangCompiler/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/HP/compiler/simpleLangCompiler/build/CMakeFiles/rebuild_cache.dir
