@@ -154,6 +154,7 @@ cd tests
 ```
 
 Expected outputs:
+
 ```bash
 === SimpleLang Compiler Test Suite ===
 
