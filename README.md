@@ -153,24 +153,24 @@ cd tests
 
 ```
 
-Expected outputs:
+Expected outputs:<br>
 
-- === SimpleLang Compiler Test Suite ===
+- === SimpleLang Compiler Test Suite ===<br>
 
-- Test 1: Factorial (5! = 120)
-- ✅ PASS
-- Test 2: Fibonacci (fib(10) = 55)
-- ✅ PASS
-- Test 3: Simple Interest (SI = 150)
-- ✅ PASS
-- Test 4: Loops - Sum 1 to 10 (sum = 55)
-- ✅ PASS
-- Test 5: Mathematics - Power (2^8 = 256)
-- ✅ PASS
+- Test 1: Factorial (5! = 120)<br>
+- ✅ PASS<br>
+- Test 2: Fibonacci (fib(10) = 55)<br>
+- ✅ PASS<br>
+- Test 3: Simple Interest (SI = 150)<br>
+- ✅ PASS<br>
+- Test 4: Loops - Sum 1 to 10 (sum = 55)<br>
+- ✅ PASS<br>
+- Test 5: Mathematics - Power (2^8 = 256)<br>
+- ✅ PASS<br>
 
-- === Test Summary ===
-- Total tests: 5
-- All tests completed!
+- === Test Summary ===<br>
+- Total tests: 5<br>
+- All tests completed!<br>
 
 
 ## Demo Presentation Structure
