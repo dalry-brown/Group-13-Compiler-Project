@@ -1,32 +1,127 @@
-# README.md - Project Documentation
 # SimpleLang Compiler
 
-A simple compiler for a basic programming language built with LLVM, developed as a educational project for a compilers course.
+A complete compiler for a basic programming language built with LLVM, developed as an educational project for a compilers course.
 
-## Features
+## 📋 Table of Contents
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Language Guide](#language-guide)
+- [Demo Programs](#demo-programs)
+- [Testing](#testing)
+- [Architecture](#architecture)
+- [Team Contributions](#team-contributions)
+- [Demo Presentation](#demo-presentation)
+- [Troubleshooting](#troubleshooting)
 
-- **Lexical Analysis**: Tokenizes source code with proper error reporting
+## 🚀 Features
+
+- **Lexical Analysis**: Comprehensive tokenization with error reporting
 - **Syntax Analysis**: Recursive descent parser with error recovery
-- **Semantic Analysis**: Basic type checking and symbol resolution
+- **Semantic Analysis**: Type checking and symbol resolution
 - **Code Generation**: LLVM IR generation with optimization support
 - **JIT Execution**: Run programs directly with LLVM's JIT compiler
 
-## Language Features
+## ⚡ Quick Start
 
-### Data Types
-- `int`: 32-bit signed integers
-- `bool`: Boolean values (true/false)
+### 5-Minute Setup
+```bash
+# 1. Install dependencies (Ubuntu/Debian)
+sudo apt-get install llvm-15-dev llvm-15-tools clang-15 cmake build-essential
 
-### Language Constructs
-- Variable declarations: `var x = 10;`
-- Function definitions: `function name(params) { ... }`
-- Control flow: `if/else`, `while` loops
-- Expressions: Arithmetic, logical, comparison operators
-- Function calls with parameters and return values
+# 2. Clone and build
+git clone https://github.com/dalry-brown/Group-13-Compiler-Project.git
+cd SimpleLangCompiler
+mkdir build && cd build
+cmake ..
+make
 
-### Sample Program
-```
-function factorial(n) {
+# 3. Test with a simple program
+echo 'function main() { return 42; }' > test.sl
+./simplelang -r test.sl
+# Expected output: Return value: 42
+🔧 Installation
+Prerequisites
+
+CMake 3.16+
+LLVM 15+ development libraries
+C++17 compatible compiler (GCC 7+, Clang 7+)
+
+Platform-Specific Installation
+Ubuntu/Debian
+bashsudo apt-get update
+sudo apt-get install llvm-15-dev llvm-15-tools clang-15 cmake build-essential git
+macOS
+bashbrew install llvm cmake git
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+Build Instructions
+bashgit clone https://github.com/dalry-brown/Group-13-Compiler-Project.git
+cd SimpleLangCompiler
+mkdir build && cd build
+cmake ..
+make
+
+# Verify installation
+./simplelang --help
+📖 Usage
+Command Line Options
+bash./simplelang [options] <input_file.sl>
+
+Options:
+  -h, --help        Show help message
+  -r, --run         Compile and execute with JIT
+  -i, --ir          Print LLVM IR to stdout
+  -t, --tokens      Print token stream for debugging
+  -o, --output      Save LLVM IR to file
+Examples
+bash# Compile and run a program
+./simplelang -r demos/factorial.sl
+
+# View generated LLVM IR
+./simplelang -i demos/factorial.sl
+
+# Debug tokenization
+./simplelang -t demos/factorial.sl
+
+# Save IR to file
+./simplelang -o program.ll demos/factorial.sl
+📝 Language Guide
+Data Types
+
+int: 32-bit signed integers (-2,147,483,648 to 2,147,483,647)
+bool: Boolean values (true, false)
+
+Variables
+cppvar x = 10;           // Declaration with initialization
+var flag = true;      // Boolean variable
+x = x + 5;           // Assignment
+Functions
+cppfunction functionName(param1, param2) {
+    // Function body
+    return expression;
+}
+
+// Example
+function add(a, b) {
+    return a + b;
+}
+Control Flow
+cpp// If statements
+if (condition) {
+    // code
+} else {
+    // code
+}
+
+// While loops
+while (condition) {
+    // code
+}
+Operators
+CategoryOperatorsExampleArithmetic+, -, *, /x + y * zComparison==, !=, <, <=, >, >=x > 5Logical&&, ||, !(x > 0) && (y < 10)
+Complete Example
+cppfunction factorial(n) {
     if (n <= 1) {
         return 1;
     } else {
@@ -35,191 +130,193 @@ function factorial(n) {
 }
 
 function main() {
-    return factorial(5);
+    return factorial(5);  // Returns 120
 }
-```
+🎯 Demo Programs
+Ready-to-run examples in the demos/ directory:
+1. Factorial (Recursion)
+bash./simplelang -r demos/factorial.sl
+# Expected: Return value: 120
+2. Fibonacci Sequence
+bash./simplelang -r demos/fibonacci.sl
+# Expected: Return value: 55 (10th Fibonacci number)
+3. Simple Interest Calculator
+bash./simplelang -r demos/simple_interest.sl
+# Expected: Return value: 150 ($1000 at 5% for 3 years)
+4. Loops and Variables
+bash./simplelang -r demos/loops.sl
+# Expected: Return value: 55 (sum of 1 to 10)
+5. Mathematical Operations
+bash./simplelang -r demos/mathematics.sl
+# Expected: Return value: 256 (2^8)
+🧪 Testing
+Automated Test Suite
+bash# Run all tests
+./tests/run_tests.sh
 
-## Building the Compiler
+# Expected output:
+# ✅ PASS - Factorial (5! = 120)
+# ✅ PASS - Fibonacci (fib(10) = 55)
+# ✅ PASS - Simple Interest (SI = 150)
+# ✅ PASS - Loops (sum = 55)
+# ✅ PASS - Mathematics (2^8 = 256)
+Manual Testing
+bash# Test individual features
+./simplelang -r demos/factorial.sl   # Test recursion
+./simplelang -r demos/loops.sl       # Test loops
+./simplelang -i demos/factorial.sl   # View generated IR
+🏗️ Architecture
+Compilation Pipeline
+Source Code → Lexer → Parser → AST → CodeGen → LLVM IR → Executable
+Component Overview
 
-### Prerequisites
-- CMake 3.16 or higher
-- LLVM 15 or higher development packages
-- C++17 compatible compiler (GCC 7+, Clang 7+, MSVC 2019+)
+Lexer (src/Lexer.cpp): Tokenizes source code
+Parser (src/Parser.cpp): Builds Abstract Syntax Tree
+AST (src/AST.cpp): Represents program structure
+CodeGen (src/CodeGen.cpp): Generates LLVM IR
+Main (src/main.cpp): Compiler driver
 
-### Build Instructions
-
-1. **Install LLVM** (Ubuntu/Debian):
-   ```bash
-   sudo apt-get install llvm-15-dev llvm-15-tools clang-15
-   ```
-
-2. **Clone and build**:
-   ```bash
-   git clone https://github.com/dalry-brown/Group-13-Compiler-Project.git
-   cd SimpleLangCompiler
-   mkdir build && cd build
-   cmake ..
-   make
-   ```
-
-### Usage
-
-```bash
-# Compile and show tokens
-./simplelang -t test.sl
-
-# Compile and show LLVM IR
-./simplelang -i test.sl
-
-# Compile and run with JIT
-./simplelang -r test.sl
-
-# Compile and save IR to file
-./simplelang -o output.ll test.sl
-
-# Show help
-./simplelang --help
-```
-
-## Project Structure
-
-```
+Project Structure
 SimpleLangCompiler/
-├── demos/
-│   ├── factorial.sl
-│   ├── fibonacci.sl
-│   ├── loops.sl
-│   ├── mathematics.sl
-│   └── simple_interest.sl
-├── src/
-│   ├── Token.h           # Token definitions
-│   ├── Lexer.h/cpp       # Lexical analyzer
-│   ├── AST.h/cpp         # Abstract syntax tree
-│   ├── Parser.h/cpp      # Recursive descent parser
-│   ├── CodeGen.h/cpp     # LLVM code generator
-│   └── main.cpp          # Main driver
-├── tests/
-│   └── run_tests.sh
-├── CMakeLists.txt
-└── README.md
-```
+├── src/                    # Source code
+│   ├── Token.h            # Token definitions
+│   ├── Lexer.h/cpp        # Lexical analyzer
+│   ├── AST.h/cpp          # Abstract syntax tree
+│   ├── Parser.h/cpp       # Recursive descent parser
+│   ├── CodeGen.h/cpp      # LLVM code generator
+│   └── main.cpp           # Main driver
+├── demos/                 # Example programs
+│   ├── factorial.sl       # Recursion example
+│   ├── fibonacci.sl       # Complex recursion
+│   ├── loops.sl           # While loop demo
+│   ├── mathematics.sl     # Mathematical operations
+│   └── simple_interest.sl # Real-world calculation
+├── tests/                 # Test suite
+│   └── run_tests.sh       # Automated tests
+├── CMakeLists.txt         # Build configuration
+└── README.md              # This file
+👥 Team Contributions
+Team Leader - Project Coordination
+Responsibilities: Overall architecture, integration, main driver
+Files: src/main.cpp, CMakeLists.txt, README.md
+Key Achievements: Modular design, successful integration, project delivery
+Member 1 - Lexical Analysis Expert
+Responsibilities: Tokenization, error reporting, lexical analysis
+Files: src/Token.h, src/Lexer.h, src/Lexer.cpp
+Key Achievements: Comprehensive tokenization, precise error locations
+Member 2 - Parser Expert
+Responsibilities: Syntax analysis, recursive descent parsing
+Files: src/Parser.h, src/Parser.cpp
+Key Achievements: Complete grammar implementation, operator precedence
+Member 3 - AST & Semantics Expert
+Responsibilities: AST design, visitor pattern, semantic analysis
+Files: src/AST.h, src/AST.cpp
+Key Achievements: Clean AST hierarchy, type checking infrastructure
+Member 4 - Code Generation Expert
+Responsibilities: LLVM IR generation, JIT compilation
+Files: src/CodeGen.h, src/CodeGen.cpp
+Key Achievements: Complete IR generation, JIT execution support
+Member 5 - Testing & Integration Expert
+Responsibilities: Testing framework, integration, demo programs
+Files: Test scripts, demo programs, CI/CD setup
+Key Achievements: Comprehensive testing, demo program creation
+🎬 Demo Presentation
+Presentation Structure (5-10 minutes)
+1. Team Introductions (2 minutes)
+Each member introduces themselves and states their contribution (cameras ON).
+2. Language Overview (1 minute)
+Brief explanation of SimpleLang features and capabilities.
+3. Live Demo (3-4 minutes)
+bash# Show source code
+cat demos/factorial.sl
 
-## Team Contributions
+# Show LLVM IR generation
+./simplelang -i demos/factorial.sl
 
-### Member 1: Lexical Analysis
-- Implemented tokenizer with comprehensive token types
-- Added line/column tracking for error reporting
-- Created lexer test suite and error handling
-- **Files**: `Token.h`, `Lexer.h/cpp`
+# Execute program
+./simplelang -r demos/factorial.sl
 
-### Member 2: Syntax Analysis  
-- Designed and implemented recursive descent parser
-- Created expression parsing with operator precedence
-- Implemented statement parsing (declarations, control flow)
-- **Files**: `Parser.h/cpp`
+# Demonstrate multiple examples
+./simplelang -r demos/fibonacci.sl
+./simplelang -r demos/simple_interest.sl
+4. Architecture Walkthrough (2-3 minutes)
+Explain compilation pipeline and component integration.
+5. Q&A (1 minute)
+Address questions about design decisions and implementation.
+Demo Programs Results
 
-### Member 3: Abstract Syntax Tree
-- Designed AST node hierarchy with visitor pattern
-- Implemented semantic analysis and type checking
-- Created AST pretty-printer for debugging
-- **Files**: `AST.h/cpp`
+factorial(5) → 120
+fibonacci(10) → 55
+simple_interest(1000, 5, 3) → 150
+sum_to_n(10) → 55
+power(2, 8) → 256
 
-### Member 4: Code Generation
-- Implemented LLVM IR generation for all language constructs
-- Added JIT compilation and execution support
-- Created optimization passes and IR verification
-- **Files**: `CodeGen.h/cpp`
+🚨 Troubleshooting
+Common Build Issues
+LLVM not found:
+bash# Check LLVM installation
+llvm-config --version
+llvm-config --prefix
 
-### Member 5: Testing and Integration
-- Designed comprehensive test suite
-- Created integration testing framework
-- Implemented build system and CI/CD
-- **Files**: `CMakeLists.txt`, test programs, documentation
+# Update CMakeLists.txt if using different version
+Compilation errors:
+bash# Clean rebuild
+cd build && make clean
+cmake ..
+make VERBOSE=1  # See detailed output
+Common Runtime Errors
+Parse Error: Expected ';'
+cpp// ❌ Missing semicolon
+var x = 10
 
-### Team Leader: Project Coordination
-- Overall architecture design and integration
-- Main compiler driver implementation
-- Documentation and presentation preparation
-- **Files**: `main.cpp`, `README.md`
+// ✅ Correct
+var x = 10;
+Code Generation Error: Unknown variable
+cpp// ❌ Variable not declared
+function main() { return x; }
 
-## Testing
+// ✅ Declare before use
+function main() { var x = 10; return x; }
+Function verification failed:
+This indicates an internal compiler bug. Check for:
 
-Run the test script:
+Missing return statements in functions
+Mismatched braces in control flow
 
-```bash
-# Run test scripts
-cd tests
-./run_tests.sh
+Getting Help
 
-```
+Check that your program follows the language syntax
+Test with simple examples first
+Use ./simplelang -t to debug tokenization
+Use ./simplelang -i to check parsing and IR generation
 
-Expected outputs:
+🎓 Learning Outcomes
+This project demonstrates mastery of:
 
-```bash
-=== SimpleLang Compiler Test Suite ===
+Compiler Design: Lexical analysis, parsing, code generation
+LLVM Framework: IR generation and JIT compilation
+Software Architecture: Modular design with clean interfaces
+Team Collaboration: Coordinated development across components
+Testing Strategy: Comprehensive validation and integration testing
 
-Test 1: Factorial (5! = 120)
-✅ PASS
-Test 2: Fibonacci (fib(10) = 55)
-✅ PASS
-Test 3: Simple Interest (SI = 150)
-✅ PASS
-Test 4: Loops - Sum 1 to 10 (sum = 55)
-✅ PASS
-Test 5: Mathematics - Power (2^8 = 256)
-✅ PASS
+🔮 Future Enhancements
+Potential Improvements
 
-=== Test Summary ===
-Total tests: 5
-All tests completed!
+String data type and string operations
+Arrays and basic data structures
+For loops and enhanced control flow
+Standard library functions (print, input)
+Optimization passes and better code generation
+Enhanced error messages and recovery
+IDE integration with syntax highlighting
 
-```
+📚 References
 
-## Demo Presentation Structure
+LLVM Language Reference
+LLVM Tutorial
+Crafting Interpreters by Robert Nystrom
+Compilers: Principles, Techniques, and Tools (Dragon Book)
 
-### 1. Team Introductions (2 minutes)
-Each member introduces themselves and their specific contribution to the project.
 
-### 2. Language Overview (1 minute)
-Brief explanation of SimpleLang features and syntax.
-
-### 3. Live Compilation Demo (3-4 minutes)
-- Show source code for factorial program
-- Compile with `./simplelang -i test3_factorial.sl` to show LLVM IR
-- Execute with `./simplelang -r test3_factorial.sl` to show result
-- Demonstrate error handling with intentionally broken code
-
-### 4. Architecture Walkthrough (2-3 minutes)
-- Explain compilation pipeline: Lexer → Parser → AST → CodeGen
-- Show how components interact
-- Highlight key design decisions
-
-### 5. Q&A and Wrap-up (1 minute)
-Address any questions and summarize achievements.
-
-## Learning Outcomes
-
-This project demonstrates:
-- **Compiler Design**: Understanding of lexical analysis, parsing, and code generation
-- **LLVM Integration**: Practical experience with LLVM IR and JIT compilation
-- **Software Architecture**: Modular design with clear separation of concerns
-- **Team Collaboration**: Coordinated development across multiple components
-- **Testing Strategy**: Comprehensive testing from unit to integration levels
-
-## Future Enhancements
-
-Potential improvements for future iterations:
-- String data type support
-- Arrays and pointers
-- More advanced control flow (for loops, break/continue)
-- Standard library functions
-- Optimization passes
-- Better error messages and recovery
-- IDE integration with syntax highlighting
-
-## References
-
-- LLVM Language Reference: https://llvm.org/docs/LangRef.html
-- LLVM Tutorial: https://llvm.org/docs/tutorial/
-- Crafting Interpreters by Robert Nystrom
-- Compilers: Principles, Techniques, and Tools (Dragon Book)
+Built with ❤️ by Group 13 for Compilers Course
+This project showcases a complete compiler implementation from source code to executable, demonstrating practical application of compiler design principles and modern development practices.
