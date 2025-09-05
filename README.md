@@ -55,7 +55,7 @@ function main() {
 
 2. **Clone and build**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/dalry-brown/Group-13-Compiler-Project.git
    cd SimpleLangCompiler
    mkdir build && cd build
    cmake ..
@@ -66,16 +66,16 @@ function main() {
 
 ```bash
 # Compile and show tokens
-./simplelang -t program.sl
+./simplelang -t test.sl
 
 # Compile and show LLVM IR
-./simplelang -i program.sl
+./simplelang -i test.sl
 
 # Compile and run with JIT
-./simplelang -r program.sl
+./simplelang -r test.sl
 
 # Compile and save IR to file
-./simplelang -o output.ll program.sl
+./simplelang -o output.ll test.sl
 
 # Show help
 ./simplelang --help
@@ -85,6 +85,12 @@ function main() {
 
 ```
 SimpleLangCompiler/
+├── demos/
+│   ├── factorial.sl
+│   ├── fibonacci.sl
+│   ├── loops.sl
+│   ├── mathematics.sl
+│   └── simple_interest.sl
 ├── src/
 │   ├── Token.h           # Token definitions
 │   ├── Lexer.h/cpp       # Lexical analyzer
@@ -93,11 +99,7 @@ SimpleLangCompiler/
 │   ├── CodeGen.h/cpp     # LLVM code generator
 │   └── main.cpp          # Main driver
 ├── tests/
-│   ├── test1_arithmetic.sl
-│   ├── test2_fibonacci.sl
-│   ├── test3_factorial.sl
-│   ├── test4_loops.sl
-│   └── test5_conditionals.sl
+│   └── run_tests.sh
 ├── CMakeLists.txt
 └── README.md
 ```
@@ -142,31 +144,32 @@ SimpleLangCompiler/
 
 ## Testing
 
-Run the test programs:
+Run the test script:
 
 ```bash
-# Test basic arithmetic
-./simplelang -r tests/test1_arithmetic.sl
+# Run test scripts
+cd tests
+./run_tests.sh
 
-# Test recursive functions
-./simplelang -r tests/test2_fibonacci.sl
-
-# Test factorial calculation
-./simplelang -r tests/test3_factorial.sl
-
-# Test loops
-./simplelang -r tests/test4_loops.sl
-
-# Test conditionals
-./simplelang -r tests/test5_conditionals.sl
 ```
 
 Expected outputs:
-- test1_arithmetic.sl: Returns 45
-- test2_fibonacci.sl: Returns 55 (10th Fibonacci number)
-- test3_factorial.sl: Returns 120 (5!)
-- test4_loops.sl: Returns 55 (sum 1 to 10)
-- test5_conditionals.sl: Returns 23 (max of 15, 23)
+=== SimpleLang Compiler Test Suite ===
+
+Test 1: Factorial (5! = 120)
+✅ PASS
+Test 2: Fibonacci (fib(10) = 55)
+✅ PASS
+Test 3: Simple Interest (SI = 150)
+✅ PASS
+Test 4: Loops - Sum 1 to 10 (sum = 55)
+✅ PASS
+Test 5: Mathematics - Power (2^8 = 256)
+✅ PASS
+
+=== Test Summary ===
+Total tests: 5
+All tests completed!
 
 ## Demo Presentation Structure
 
