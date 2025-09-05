@@ -1,0 +1,50 @@
+# Build directories
+build/
+bin/
+obj/
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Compiled binaries
+simplelang
+*.exe
+*.out
+*.o
+*.a
+*.so
+*.dylib
+
+# LLVM IR files (generated)
+*.ll
+*.bc
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Test artifacts
+test.sl
+temp_*.sl
+error_demo.sl
+output.txt
+
+# Documentation build
+docs/_build/
+*.pdf
+
+# Backup files
+*.bak
+*.orig
