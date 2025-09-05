@@ -154,6 +154,7 @@ cd tests
 ```
 
 Expected outputs:
+```bash
 === SimpleLang Compiler Test Suite ===
 
 Test 1: Factorial (5! = 120)
@@ -170,6 +171,8 @@ Test 5: Mathematics - Power (2^8 = 256)
 === Test Summary ===
 Total tests: 5
 All tests completed!
+
+```
 
 ## Demo Presentation Structure
 
