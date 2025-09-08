@@ -174,25 +174,18 @@ All tests completed!
 
 ## Demo Presentation Structure
 
-### 1. Team Introductions (2 minutes)
-Each member introduces themselves and their specific contribution to the project.
-
-### 2. Language Overview (1 minute)
+### 1. Language Overview (1 minute)
 Brief explanation of SimpleLang features and syntax.
 
-### 3. Live Compilation Demo (3-4 minutes)
+### 2. Team Introductions (1.5 minutes each)
+Each member introduces themselves and their specific contribution to the project.
+
+### 3. Live Compilation Demo (3 minutes)
+- Explain compilation pipeline: Lexer → Parser → AST → CodeGen
 - Show source code for factorial program
 - Compile with `./simplelang -i test3_factorial.sl` to show LLVM IR
 - Execute with `./simplelang -r test3_factorial.sl` to show result
 - Demonstrate error handling with intentionally broken code
-
-### 4. Architecture Walkthrough (2-3 minutes)
-- Explain compilation pipeline: Lexer → Parser → AST → CodeGen
-- Show how components interact
-- Highlight key design decisions
-
-### 5. Q&A and Wrap-up (1 minute)
-Address any questions and summarize achievements.
 
 ## Learning Outcomes
 
@@ -221,3 +214,4 @@ Potential improvements for future iterations:
 - Crafting Interpreters by Robert Nystrom
 
 - Compilers: Principles, Techniques, and Tools (Dragon Book)
+
