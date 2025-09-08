@@ -106,41 +106,38 @@ SimpleLangCompiler/
 
 ## Team Contributions
 
-### Member 1: Lexical Analysis
+### Member 1 (Audrey): Lexical Analysis
 - Implemented tokenizer with comprehensive token types
 - Added line/column tracking for error reporting
 - Created lexer test suite and error handling
 - **Files**: `Token.h`, `Lexer.h/cpp`
 
-### Member 2: Syntax Analysis  
+### Member 2 (Yaw): Syntax Analysis  
 - Designed and implemented recursive descent parser
 - Created expression parsing with operator precedence
 - Implemented statement parsing (declarations, control flow)
 - **Files**: `Parser.h/cpp`
 
-### Member 3: Abstract Syntax Tree
+### Member 3 (Jonathan): Abstract Syntax Tree
 - Designed AST node hierarchy with visitor pattern
 - Implemented semantic analysis and type checking
 - Created AST pretty-printer for debugging
 - **Files**: `AST.h/cpp`
 
-### Member 4: Code Generation
+### Member 4 (Percy): Code Generation
 - Implemented LLVM IR generation for all language constructs
 - Added JIT compilation and execution support
 - Created optimization passes and IR verification
 - **Files**: `CodeGen.h/cpp`
 
-### Member 5: Testing and Integration
+### Member 5 (William): Testing and Integration
 - Designed comprehensive test suite
 - Created integration testing framework
 - Implemented build system and CI/CD
-- **Files**: `CMakeLists.txt`, test programs, documentation
-
-### Team Leader: Project Coordination
 - Overall architecture design and integration
 - Main compiler driver implementation
 - Documentation and presentation preparation
-- **Files**: `main.cpp`, `README.md`
+- **Files**: `main.cpp`, `README.md`, `CMakeLists.txt`, test programs, documentation
 
 ## Testing
 
@@ -222,4 +219,5 @@ Potential improvements for future iterations:
 - LLVM Language Reference: https://llvm.org/docs/LangRef.html
 - LLVM Tutorial: https://llvm.org/docs/tutorial/
 - Crafting Interpreters by Robert Nystrom
+
 - Compilers: Principles, Techniques, and Tools (Dragon Book)
