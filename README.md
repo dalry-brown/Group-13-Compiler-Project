@@ -56,7 +56,7 @@ function main() {
 2. **Clone and build**:
    ```bash
    git clone https://github.com/dalry-brown/Group-13-Compiler-Project.git
-   cd SimpleLangCompiler
+   cd Group-13-Compiler-Project
    mkdir build && cd build
    cmake ..
    make
